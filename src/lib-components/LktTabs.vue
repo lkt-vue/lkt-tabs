@@ -1,34 +1,28 @@
-<script lang="ts">
-import LktTab from "../components/LktTab.vue";
-
-export default {
-    name: 'LktTabs',
-    inheritAttrs: false,
-    customOptions: {},
-    components: {LktTab}
-};
-</script>
-
 <script lang="ts" setup>
-import {computed, getCurrentInstance, ref, watch} from 'vue';
-import {getSlots, ILktObject} from "lkt-tools";
+import LktTab from "../components/LktTab.vue";
+import {computed, getCurrentInstance, nextTick, ref, watch} from 'vue';
+import {getSlots} from "lkt-vue-tools";
 import {loadSelectedTabFromSession, setSelectedTabFromSession} from "../functions/functions";
+import {LktObject} from "lkt-ts-interfaces";
 
 const {ctx: _this}: any = getCurrentInstance();
 
-const props = defineProps({
-    id: {type: String, default: ''},
-    modelValue: {type: [String, Number], default: ''},
-    useSession: {type: Boolean, default: false},
-    cacheLifetime: {type: Number, default: 5,},
-    contentPad: {type: String, default: undefined,},
-    palette: {type: String, default: undefined,},
-    titles: {
-        type: Object,
-        default() {
-            return {};
-        }
-    },
+const props = withDefaults(defineProps<{
+    modelValue: string|number,
+    id?: string,
+    useSession?: boolean,
+    cacheLifetime?: number,
+    contentPad?: string,
+    palette?: string,
+    titles?: LktObject,
+}>(), {
+    modelValue: '',
+    id: '',
+    useSession: false,
+    cacheLifetime: 5,
+    contentPad: '',
+    palette: '',
+    titles: () => ({}),
 });
 
 const emit = defineEmits(['update:modelValue'])
@@ -36,11 +30,11 @@ const emit = defineEmits(['update:modelValue'])
 const Value = ref('');
 
 if (props.useSession) {
-    if (!_this.id) {
+    if (!props.id) {
         console.warn('[LKT Tabs] You\'re trying to use session provided tabs without the required id. Please, add id attr');
     }
 
-    let sessionVal = loadSelectedTabFromSession(_this.id);
+    let sessionVal = loadSelectedTabFromSession(props.id);
     if (sessionVal) Value.value = sessionVal;
 }
 
@@ -52,7 +46,7 @@ watch(() => props.modelValue, (newVal, oldVal) => {
 
 watch(Value, (newVal, oldVal) => {
     emit('update:modelValue');
-    _this.$nextTick(() => {
+    nextTick(() => {
         _this.$forceUpdate()
     });
     if (props.useSession) {
@@ -85,7 +79,7 @@ const liSlots = computed(() => {
 });
 
 const tabsHref = computed(() => {
-    let r: ILktObject = {};
+    let r: LktObject = {};
     for (let k in _this.$refs) {
         r[k] = _this.$refs[k].hash;
     }
@@ -97,14 +91,14 @@ const displayButtons = computed(() => {
     return Object.keys(tabsSlots.value).length > 1;
 });
 
-const getTabHref = (key: string = '') => {
+const getTabHref = (key: string|number = '') => {
     if (tabsHref.value.length > 0 && tabsHref.value[key]) {
         return '#' + tabsHref.value[key];
     }
     return '#';
 }
 
-const getTabTitle = (key: string = '') => {
+const getTabTitle = (key: string|number = '') => {
     if (props.titles && props.titles[key]) return props.titles[key];
     return key;
 }

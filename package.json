@@ -1,6 +1,6 @@
 {
   "name": "lkt-tabs",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "",
   "main": "src/index.ts",
   "module": "src/index.ts",
@@ -38,7 +38,9 @@
   "dependencies": {
     "lkt-events": "^1.0.4",
     "lkt-session": "^1.0.6",
-    "lkt-tools": "^1.0.10",
+    "lkt-string-tools": "^1.0.5",
+    "lkt-ts-interfaces": "^1.0.5",
+    "lkt-vue-tools": "^1.0.1",
     "vue": "^3.0.5"
   },
   "engines": {

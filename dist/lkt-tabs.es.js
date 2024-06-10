@@ -1,14 +1,17 @@
-import { defineComponent as H, ref as g, computed as i, watch as $, openBlock as l, createElementBlock as r, unref as u, renderSlot as h, createCommentVNode as P, getCurrentInstance as q, normalizeClass as C, withDirectives as F, createElementVNode as y, Fragment as _, renderList as b, withModifiers as V, vShow as M, normalizeStyle as x, createBlock as z, withCtx as D } from "vue";
-import { generateRandomString as E, isString as K, getSlots as S } from "lkt-tools";
-import { getSessionStorage as U, setSessionStorage as R } from "lkt-session";
-const B = (a) => `lkt-tabs.${window.location.host}${window.location.pathname}.${a}`, Y = (a) => U(B(a)), G = (a, c, e) => {
-  R(B(a), c, e * 60);
-}, J = ["id"], Q = {
-  name: "LktTab",
-  inheritAttrs: !1,
-  customOptions: {}
-}, A = /* @__PURE__ */ H({
-  ...Q,
+import { defineComponent as B, ref as g, computed as c, watch as $, openBlock as r, createElementBlock as i, unref as u, renderSlot as p, createCommentVNode as P, getCurrentInstance as q, nextTick as x, normalizeClass as L, withDirectives as F, createElementVNode as V, Fragment as b, renderList as _, withModifiers as H, vShow as O, normalizeStyle as z, createBlock as D, withCtx as E } from "vue";
+import { getSessionStorage as K, setSessionStorage as N } from "lkt-session";
+function U(a = 10) {
+  let l = "";
+  const t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", s = t.length;
+  for (let n = 0; n < a; n++)
+    l += t.charAt(Math.floor(Math.random() * s));
+  return l;
+}
+function Y(a) {
+  return typeof a == "string";
+}
+const G = ["id"], J = /* @__PURE__ */ B({
+  __name: "LktTab",
   props: {
     id: { type: String, default: "" },
     name: { type: String, required: !0 },
@@ -17,116 +20,121 @@ const B = (a) => `lkt-tabs.${window.location.host}${window.location.pathname}.${
     isDisabled: { type: Boolean, default: !1 }
   },
   emits: ["is-active"],
-  setup(a, { emit: c }) {
-    const e = a, n = g(!1), o = g(E(8)), m = i(() => e.id ? e.id : K(e.name) && e.name.length > 0 ? e.name.toLowerCase().replace(/ /g, "-") : o.value), p = () => {
-      n.value = e.activeHash === e.hash, c("is-active", n.value);
+  setup(a, { emit: l }) {
+    const t = a, s = g(!1), n = g(U(8)), m = c(() => t.id ? t.id : Y(t.name) && t.name.length > 0 ? t.name.toLowerCase().replace(/ /g, "-") : n.value), h = () => {
+      s.value = t.activeHash === t.hash, l("is-active", s.value);
     };
-    return $(() => e.activeHash, p), p(), (d, T) => n.value ? (l(), r("section", {
+    return $(() => t.activeHash, h), h(), (d, T) => s.value ? (r(), i("section", {
       key: 0,
       "data-lkt": "tab-content",
       id: u(m),
       role: "tabpanel"
     }, [
-      h(d.$slots, "default")
-    ], 8, J)) : P("", !0);
+      p(d.$slots, "default")
+    ], 8, G)) : P("", !0);
   }
-}), W = { class: "lkt-tabs__list" }, X = ["href", "onClick"], Z = ["innerHTML", "onClick", "href"], tt = { "data-lkt": "tab" }, et = {
-  name: "LktTabs",
-  inheritAttrs: !1,
-  customOptions: {},
-  components: { LktTab: A }
-}, st = /* @__PURE__ */ H({
-  ...et,
+});
+function S(a, l) {
+  const t = {};
+  let s = {};
+  if (a && (s = Object.assign(s, a)), l) {
+    for (const n in s)
+      n.indexOf(l) === 0 && (t[n.replace(l, "")] = s[n]);
+    return t;
+  }
+  for (const n in s)
+    t[n] = s[n];
+  return t;
+}
+const I = (a) => `lkt-tabs.${window.location.host}${window.location.pathname}.${a}`, Q = (a) => K(I(a)), R = (a, l, t) => {
+  N(I(a), l, t * 60);
+}, W = { class: "lkt-tabs__list" }, X = ["href", "onClick"], Z = ["innerHTML", "onClick", "href"], tt = { "data-lkt": "tab" }, et = /* @__PURE__ */ B({
+  __name: "LktTabs",
   props: {
-    id: { type: String, default: "" },
-    modelValue: { type: [String, Number], default: "" },
+    modelValue: { default: "" },
+    id: { default: "" },
     useSession: { type: Boolean, default: !1 },
-    cacheLifetime: { type: Number, default: 5 },
-    contentPad: { type: String, default: void 0 },
-    palette: { type: String, default: void 0 },
-    titles: {
-      type: Object,
-      default() {
-        return {};
-      }
-    }
+    cacheLifetime: { default: 5 },
+    contentPad: { default: "" },
+    palette: { default: "" },
+    titles: { default: () => ({}) }
   },
   emits: ["update:modelValue"],
-  setup(a, { emit: c }) {
-    const e = a, { ctx: n } = q(), o = g("");
-    if (e.useSession) {
-      n.id || console.warn("[LKT Tabs] You're trying to use session provided tabs without the required id. Please, add id attr");
-      let t = Y(n.id);
-      t && (o.value = t);
+  setup(a, { emit: l }) {
+    const t = a, { ctx: s } = q(), n = g("");
+    if (t.useSession) {
+      t.id || console.warn("[LKT Tabs] You're trying to use session provided tabs without the required id. Please, add id attr");
+      let e = Q(t.id);
+      e && (n.value = e);
     }
-    $(() => e.modelValue, (t, f) => {
-      typeof t == "string" && (o.value = t);
-    }), $(o, (t, f) => {
-      c("update:modelValue"), n.$nextTick(() => {
-        n.$forceUpdate();
-      }), e.useSession && G(n.id, t, e.cacheLifetime);
+    $(() => t.modelValue, (e, f) => {
+      typeof e == "string" && (n.value = e);
+    }), $(n, (e, f) => {
+      l("update:modelValue"), x(() => {
+        s.$forceUpdate();
+      }), t.useSession && R(s.id, e, t.cacheLifetime);
     });
-    const m = i(() => {
-      let t = [];
-      return e.palette && t.push(`lkt-tabs--${e.palette}`), t.join(" ");
-    }), p = i(() => {
-      let t = [];
-      return e.contentPad && t.push(`padding: ${e.contentPad}`), t.join(";");
-    }), d = i(() => S(n.$slots, "tab-")), T = i(() => S(n.$slots, "title-")), I = i(() => S(n.$slots, "li-")), v = i(() => {
-      let t = {};
-      for (let f in n.$refs)
-        t[f] = n.$refs[f].hash;
-      return t;
-    }), j = i(() => Object.keys(d.value).length > 1), k = (t = "") => v.value.length > 0 && v.value[t] ? "#" + v.value[t] : "#", w = (t = "") => e.titles && e.titles[t] ? e.titles[t] : t, N = () => {
-      n.$forceUpdate();
+    const m = c(() => {
+      let e = [];
+      return t.palette && e.push(`lkt-tabs--${t.palette}`), e.join(" ");
+    }), h = c(() => {
+      let e = [];
+      return t.contentPad && e.push(`padding: ${t.contentPad}`), e.join(";");
+    }), d = c(() => S(s.$slots, "tab-")), T = c(() => S(s.$slots, "title-")), M = c(() => S(s.$slots, "li-")), v = c(() => {
+      let e = {};
+      for (let f in s.$refs)
+        e[f] = s.$refs[f].hash;
+      return e;
+    }), j = c(() => Object.keys(d.value).length > 1), k = (e = "") => v.value.length > 0 && v.value[e] ? "#" + v.value[e] : "#", w = (e = "") => t.titles && t.titles[e] ? t.titles[e] : e, y = () => {
+      s.$forceUpdate();
     };
-    for (let t in d.value)
-      o.value === "" && (o.value = t);
-    return (t, f) => (l(), r("div", {
-      class: C(["lkt-tabs", u(m)])
+    for (let e in d.value)
+      n.value === "" && (n.value = e);
+    return (e, f) => (r(), i("div", {
+      class: L(["lkt-tabs", u(m)])
     }, [
-      F(y("ul", W, [
-        (l(!0), r(_, null, b(u(d), (L, s) => (l(), r("li", {
-          key: s,
-          class: C(["lkt-tab", { "is-active": s === o.value }]),
+      F(V("ul", W, [
+        (r(!0), i(b, null, _(u(d), (C, o) => (r(), i("li", {
+          key: o,
+          class: L(["lkt-tab", { "is-active": o === n.value }]),
           role: "presentation"
         }, [
-          u(T)[s] ? (l(), r("a", {
+          u(T)[o] ? (r(), i("a", {
             key: 0,
-            href: k(s),
-            onClick: V((O) => o.value = s, ["prevent"]),
+            href: k(o),
+            onClick: H((A) => n.value = o, ["prevent"]),
             role: "tab"
           }, [
-            h(t.$slots, "title-" + s)
-          ], 8, X)) : (l(), r("a", {
+            p(e.$slots, "title-" + o)
+          ], 8, X)) : (r(), i("a", {
             key: 1,
-            innerHTML: w(s),
-            onClick: V((O) => o.value = s, ["prevent"]),
-            href: k(s),
+            innerHTML: w(o),
+            onClick: H((A) => n.value = o, ["prevent"]),
+            href: k(o),
             role: "tab"
           }, null, 8, Z))
         ], 2))), 128)),
-        (l(!0), r(_, null, b(u(I), (L, s) => (l(), r("li", tt, [
-          h(t.$slots, "li-" + s)
+        (r(!0), i(b, null, _(u(M), (C, o) => (r(), i("li", tt, [
+          p(e.$slots, "li-" + o)
         ]))), 256))
       ], 512), [
-        [M, u(j)]
+        [O, u(j)]
       ]),
-      y("div", {
+      V("div", {
         class: "lkt-tabs__content",
-        style: x(u(p))
+        style: z(u(h))
       }, [
-        (l(!0), r(_, null, b(u(d), (L, s) => (l(), z(A, {
+        (r(!0), i(b, null, _(u(d), (C, o) => (r(), D(J, {
           ref_for: !0,
-          ref: s,
-          hash: s,
-          id: s,
-          name: w(s),
-          "active-hash": o.value,
-          onIsActive: N
+          ref: o,
+          hash: o,
+          id: o,
+          name: w(o),
+          "active-hash": n.value,
+          onIsActive: y
         }, {
-          default: D(() => [
-            h(t.$slots, "tab-" + s)
+          default: E(() => [
+            p(e.$slots, "tab-" + o)
           ]),
           _: 2
         }, 1032, ["hash", "id", "name", "active-hash"]))), 256))
@@ -134,11 +142,11 @@ const B = (a) => `lkt-tabs.${window.location.host}${window.location.pathname}.${
     ], 2));
   }
 });
-const lt = {
-  install: (a, c) => {
-    a.component("lkt-tabs", st);
+const at = {
+  install: (a, l) => {
+    a.component("lkt-tabs", et);
   }
 };
 export {
-  lt as default
+  at as default
 };

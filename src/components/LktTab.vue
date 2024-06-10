@@ -1,14 +1,6 @@
-<script lang="ts">
-export default {
-    name: "LktTab",
-    inheritAttrs: false,
-    customOptions: {},
-};
-</script>
-
 <script lang="ts" setup>
 import {computed, ref, watch} from "vue";
-import {generateRandomString, isString} from "lkt-tools";
+import {generateRandomString, isString} from "lkt-string-tools";
 
 const props = defineProps({
     id: {type: String, default: ''},

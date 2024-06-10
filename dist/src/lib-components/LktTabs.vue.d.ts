@@ -1,3 +1,5 @@
+import { nextTick } from 'vue';
+import { LktObject } from "lkt-ts-interfaces";
 declare const _default: {
     new (...args: any[]): {
         $: import("vue").ComponentInternalInstance;
@@ -9,37 +11,24 @@ declare const _default: {
             cacheLifetime: number;
             contentPad: string;
             palette: string;
-            titles: Record<string, any>;
-        }> & Omit<Readonly<import("vue").ExtractPropTypes<{
-            id: {
-                type: StringConstructor;
-                default: string;
-            };
-            modelValue: {
-                type: (StringConstructor | NumberConstructor)[];
-                default: string;
-            };
-            useSession: {
-                type: BooleanConstructor;
-                default: boolean;
-            };
-            cacheLifetime: {
-                type: NumberConstructor;
-                default: number;
-            };
-            contentPad: {
-                type: StringConstructor;
-                default: undefined;
-            };
-            palette: {
-                type: StringConstructor;
-                default: undefined;
-            };
-            titles: {
-                type: ObjectConstructor;
-                default(): {};
-            };
-        }>> & {
+            titles: LktObject;
+        }> & Omit<Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+            modelValue: string | number;
+            id?: string | undefined;
+            useSession?: boolean | undefined;
+            cacheLifetime?: number | undefined;
+            contentPad?: string | undefined;
+            palette?: string | undefined;
+            titles?: LktObject | undefined;
+        }>, {
+            modelValue: string;
+            id: string;
+            useSession: boolean;
+            cacheLifetime: number;
+            contentPad: string;
+            palette: string;
+            titles: () => {};
+        }>>> & {
             "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
         } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "id" | "modelValue" | "useSession" | "cacheLifetime" | "contentPad" | "palette" | "titles">;
         $attrs: {
@@ -55,36 +44,23 @@ declare const _default: {
         $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null;
         $emit: (event: "update:modelValue", ...args: any[]) => void;
         $el: any;
-        $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
-            id: {
-                type: StringConstructor;
-                default: string;
-            };
-            modelValue: {
-                type: (StringConstructor | NumberConstructor)[];
-                default: string;
-            };
-            useSession: {
-                type: BooleanConstructor;
-                default: boolean;
-            };
-            cacheLifetime: {
-                type: NumberConstructor;
-                default: number;
-            };
-            contentPad: {
-                type: StringConstructor;
-                default: undefined;
-            };
-            palette: {
-                type: StringConstructor;
-                default: undefined;
-            };
-            titles: {
-                type: ObjectConstructor;
-                default(): {};
-            };
-        }>> & {
+        $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+            modelValue: string | number;
+            id?: string | undefined;
+            useSession?: boolean | undefined;
+            cacheLifetime?: number | undefined;
+            contentPad?: string | undefined;
+            palette?: string | undefined;
+            titles?: LktObject | undefined;
+        }>, {
+            modelValue: string;
+            id: string;
+            useSession: boolean;
+            cacheLifetime: number;
+            contentPad: string;
+            palette: string;
+            titles: () => {};
+        }>>> & {
             "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
         }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:modelValue"[], string, {
             id: string;
@@ -93,7 +69,7 @@ declare const _default: {
             cacheLifetime: number;
             contentPad: string;
             palette: string;
-            titles: Record<string, any>;
+            titles: LktObject;
         }> & {
             beforeCreate?: ((() => void) | (() => void)[]) | undefined;
             created?: ((() => void) | (() => void)[]) | undefined;
@@ -112,73 +88,47 @@ declare const _default: {
             errorCaptured?: (((err: unknown, instance: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null, info: string) => boolean | void) | ((err: unknown, instance: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}>> | null, info: string) => boolean | void)[]) | undefined;
         };
         $forceUpdate: () => void;
-        $nextTick: typeof import("vue").nextTick;
+        $nextTick: typeof nextTick;
         $watch(source: string | Function, cb: Function, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
-    } & Readonly<import("vue").ExtractPropTypes<{
-        id: {
-            type: StringConstructor;
-            default: string;
-        };
-        modelValue: {
-            type: (StringConstructor | NumberConstructor)[];
-            default: string;
-        };
-        useSession: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-        cacheLifetime: {
-            type: NumberConstructor;
-            default: number;
-        };
-        contentPad: {
-            type: StringConstructor;
-            default: undefined;
-        };
-        palette: {
-            type: StringConstructor;
-            default: undefined;
-        };
-        titles: {
-            type: ObjectConstructor;
-            default(): {};
-        };
-    }>> & {
+    } & Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+        modelValue: string | number;
+        id?: string | undefined;
+        useSession?: boolean | undefined;
+        cacheLifetime?: number | undefined;
+        contentPad?: string | undefined;
+        palette?: string | undefined;
+        titles?: LktObject | undefined;
+    }>, {
+        modelValue: string;
+        id: string;
+        useSession: boolean;
+        cacheLifetime: number;
+        contentPad: string;
+        palette: string;
+        titles: () => {};
+    }>>> & {
         "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
     } & import("vue").ShallowUnwrapRef<{}> & {} & import("vue").ComponentCustomProperties;
     __isFragment?: undefined;
     __isTeleport?: undefined;
     __isSuspense?: undefined;
-} & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
-    id: {
-        type: StringConstructor;
-        default: string;
-    };
-    modelValue: {
-        type: (StringConstructor | NumberConstructor)[];
-        default: string;
-    };
-    useSession: {
-        type: BooleanConstructor;
-        default: boolean;
-    };
-    cacheLifetime: {
-        type: NumberConstructor;
-        default: number;
-    };
-    contentPad: {
-        type: StringConstructor;
-        default: undefined;
-    };
-    palette: {
-        type: StringConstructor;
-        default: undefined;
-    };
-    titles: {
-        type: ObjectConstructor;
-        default(): {};
-    };
-}>> & {
+} & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+    modelValue: string | number;
+    id?: string | undefined;
+    useSession?: boolean | undefined;
+    cacheLifetime?: number | undefined;
+    contentPad?: string | undefined;
+    palette?: string | undefined;
+    titles?: LktObject | undefined;
+}>, {
+    modelValue: string;
+    id: string;
+    useSession: boolean;
+    cacheLifetime: number;
+    contentPad: string;
+    palette: string;
+    titles: () => {};
+}>>> & {
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", {
     id: string;
@@ -187,8 +137,22 @@ declare const _default: {
     cacheLifetime: number;
     contentPad: string;
     palette: string;
-    titles: Record<string, any>;
+    titles: LktObject;
 }> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {
     $slots: Record<string, {}> & Record<string, {}> & Record<string, {}>;
 });
 export default _default;
+declare type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
+declare type __VLS_TypePropsToRuntimeProps<T> = {
+    [K in keyof T]-?: {} extends Pick<T, K> ? {
+        type: import('vue').PropType<__VLS_NonUndefinedable<T[K]>>;
+    } : {
+        type: import('vue').PropType<T[K]>;
+        required: true;
+    };
+};
+declare type __VLS_WithDefaults<P, D> = {
+    [K in keyof Pick<P, keyof P>]: K extends keyof D ? P[K] & {
+        default: D[K];
+    } : P[K];
+};
