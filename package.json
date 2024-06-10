@@ -1,0 +1,47 @@
+{
+  "name": "lkt-tabs",
+  "version": "1.0.7",
+  "description": "",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "files": [
+    "dist/*",
+    "src/**/*.vue",
+    "theme/**/*.css"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./dist/lkt-tabs.es.js",
+      "require": "./dist/lkt-tabs.umd.js"
+    },
+    "./dist/style.css": "./dist/style.css",
+    "./theme": "./theme/default.css",
+    "./theme/default": "./theme/default.css"
+  },
+  "types": "./dist/types/index.d.ts",
+  "scripts": {
+    "serve": "vite",
+    "build": "vite build && vue-tsc --emitDeclarationOnly --project tsconfig.json && mv dist/src dist/types && rm dist/README.md.d.ts && rm dist/vite.config.d.ts",
+    "build2": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test-coverage": "vitest run --coverage"
+  },
+  "author": "Antonio Ibáñez",
+  "devDependencies": {
+    "@babel/types": "^7.18.9",
+    "@types/node": "^18.0.6",
+    "@vitejs/plugin-vue": "^3.0.1",
+    "vue-tsc": "^0.38.9"
+  },
+  "dependencies": {
+    "lkt-events": "^1.0.4",
+    "lkt-session": "^1.0.6",
+    "lkt-tools": "^1.0.10",
+    "vue": "^3.0.5"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}
