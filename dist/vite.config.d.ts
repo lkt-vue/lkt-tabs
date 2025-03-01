@@ -1,35 +1,35 @@
 declare namespace _default {
-    const plugins: import("vite").Plugin[];
+    let plugins: import("vite").Plugin<import("@vitejs/plugin-vue").Api>[];
     namespace resolve {
-        const alias: {
+        let alias: {
             '@': string;
             '@test': string;
         };
     }
     namespace build {
         export namespace lib {
-            const entry: string;
-            const name: string;
+            let entry: string;
+            let name: string;
             function fileName(format: any): string;
         }
         export { outDir };
-        export const minify: boolean;
+        export let minify: boolean;
         export namespace rollupOptions {
-            const external: string[];
+            let external: string[];
             namespace output {
-                const globals: {
+                let globals: {
                     vue: string;
                     "lkt-tools": string;
                     "lkt-events": string;
                     "lkt-session": string;
                 };
-                const sourcemapExcludeSources: boolean;
+                let sourcemapExcludeSources: boolean;
             }
         }
     }
     namespace test {
         namespace coverage {
-            const reporter: string[];
+            let reporter: string[];
         }
         function resolveSnapshotPath(testPath: any, snapExtension: any): string;
     }

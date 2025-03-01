@@ -1,31 +1,32 @@
 <script lang="ts" setup>
 import LktTab from "../components/LktTab.vue";
-import {computed, getCurrentInstance, nextTick, ref, watch} from 'vue';
-import {getSlots} from "lkt-vue-tools";
+import {computed, getCurrentInstance, nextTick, ref, useSlots, watch} from 'vue';
 import {loadSelectedTabFromSession, setSelectedTabFromSession} from "../functions/functions";
-import {LktObject} from "lkt-ts-interfaces";
+import {LktObject} from "lkt-vue-kernel";
 
 const {ctx: _this}: any = getCurrentInstance();
 
+const slots = useSlots();
+
 const props = withDefaults(defineProps<{
-    modelValue: string|number,
-    id?: string,
-    useSession?: boolean,
-    cacheLifetime?: number,
-    contentPad?: string,
-    palette?: string,
-    titles?: LktObject,
+    modelValue: string|number
+    id?: string
+    useSession?: boolean
+    cacheLifetime?: number
+    contentPad?: string
+    titles?: LktObject
 }>(), {
     modelValue: '',
     id: '',
     useSession: false,
     cacheLifetime: 5,
     contentPad: '',
-    palette: '',
     titles: () => ({}),
 });
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits([
+    'update:modelValue'
+])
 
 const Value = ref('');
 
@@ -55,8 +56,7 @@ watch(Value, (newVal, oldVal) => {
 })
 
 const classes = computed(() => {
-    let r = [];
-    if (!!props.palette) r.push(`lkt-tabs--${props.palette}`);
+    let r: Array<string> = [];
     return r.join(' ');
 });
 
@@ -67,15 +67,21 @@ const contentStyles = computed(() => {
 });
 
 const tabsSlots = computed(() => {
-    return getSlots(_this.$slots, 'tab-');
+    let r: string[] = [];
+    for (let k in slots) if (k.indexOf('tab-') !== -1) r.push(k);
+    return r;
 });
 
 const titlesSlots = computed(() => {
-    return getSlots(_this.$slots, 'title-');
+    let r: string[] = [];
+    for (let k in slots) if (k.indexOf('title-') !== -1) r.push(k);
+    return r;
 });
 
 const liSlots = computed(() => {
-    return getSlots(_this.$slots, 'li-');
+    let r: string[] = [];
+    for (let k in slots) if (k.indexOf('li-') !== -1) r.push(k);
+    return r;
 });
 
 const tabsHref = computed(() => {
@@ -117,18 +123,18 @@ for (let k in tabsSlots.value) {
     <div class="lkt-tabs" v-bind:class="classes">
         <ul class="lkt-tabs__list" v-show="displayButtons">
             <li
-                v-for="(_, key) in tabsSlots"
+                v-for="key in tabsSlots"
                 v-bind:key="key"
                 class="lkt-tab"
                 v-bind:class="{'is-active': key === Value}"
                 role="presentation"
             >
-                <template v-if="!!titlesSlots[key]">
+                <template v-if="titlesSlots.includes(key)">
                     <a v-bind:href="getTabHref(key)"
                        v-on:click.prevent="Value = key"
                        role="tab"
                     >
-                        <slot v-bind:name="'title-' + key"></slot>
+                        <slot v-bind:name="'title-' + key"/>
                     </a>
                 </template>
                 <template v-else>
@@ -145,7 +151,7 @@ for (let k in tabsSlots.value) {
         </ul>
         <div class="lkt-tabs__content" v-bind:style="contentStyles">
             <lkt-tab
-                v-for="(_, key) in tabsSlots"
+                v-for="key in tabsSlots"
                 v-bind:ref="key"
                 v-bind:hash="key"
                 v-bind:id="key"
@@ -153,7 +159,7 @@ for (let k in tabsSlots.value) {
                 v-bind:active-hash="Value"
                 v-on:is-active="refresh"
             >
-                <slot v-bind:name="'tab-' + key"></slot>
+                <slot v-bind:name="'tab-' + key"/>
             </lkt-tab>
         </div>
     </div>
