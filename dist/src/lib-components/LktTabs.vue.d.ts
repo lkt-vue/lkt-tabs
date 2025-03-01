@@ -1,13 +1,5 @@
 import LktTab from "../components/LktTab.vue";
-import { LktObject } from "lkt-vue-kernel";
-type __VLS_Props = {
-    modelValue: string | number;
-    id?: string;
-    useSession?: boolean;
-    cacheLifetime?: number;
-    contentPad?: string;
-    titles?: LktObject;
-};
+import { LktObject, TabsConfig } from "lkt-vue-kernel";
 declare const Value: import("vue").Ref<string, string>;
 declare const classes: import("vue").ComputedRef<string>;
 declare const contentStyles: import("vue").ComputedRef<string>;
@@ -19,15 +11,15 @@ declare const getTabHref: (key?: string | number) => string;
 declare const getTabTitle: (key?: string | number) => any;
 declare const refresh: () => void;
 declare const __VLS_ctx: InstanceType<__VLS_PickNotAny<typeof __VLS_self, new () => {}>>;
-declare var __VLS_2: string, __VLS_3: {}, __VLS_6: string, __VLS_7: {}, __VLS_17: string, __VLS_18: {};
+declare var __VLS_2: string, __VLS_3: {}, __VLS_6: string, __VLS_7: {}, __VLS_16: string, __VLS_17: {};
 type __VLS_Slots = __VLS_PrettifyGlobal<__VLS_OmitStringIndex<typeof __VLS_ctx.$slots> & {
     [K in NonNullable<typeof __VLS_2>]?: (props: typeof __VLS_3) => any;
 } & {
     [K in NonNullable<typeof __VLS_6>]?: (props: typeof __VLS_7) => any;
 } & {
-    [K in NonNullable<typeof __VLS_17>]?: (props: typeof __VLS_18) => any;
+    [K in NonNullable<typeof __VLS_16>]?: (props: typeof __VLS_17) => any;
 }>;
-declare const __VLS_self: import("vue").DefineComponent<__VLS_Props, {
+declare const __VLS_self: import("vue").DefineComponent<TabsConfig, {
     LktTab: typeof LktTab;
     Value: typeof Value;
     classes: typeof classes;
@@ -41,7 +33,7 @@ declare const __VLS_self: import("vue").DefineComponent<__VLS_Props, {
     refresh: typeof refresh;
 }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (...args: any[]) => void;
-}, string, import("vue").PublicProps, Readonly<__VLS_Props> & Readonly<{
+}, string, import("vue").PublicProps, Readonly<TabsConfig> & Readonly<{
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }>, {
     id: string;
@@ -51,9 +43,9 @@ declare const __VLS_self: import("vue").DefineComponent<__VLS_Props, {
     contentPad: string;
     titles: LktObject;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, false, {}, any>;
-declare const __VLS_component: import("vue").DefineComponent<__VLS_Props, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
+declare const __VLS_component: import("vue").DefineComponent<TabsConfig, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {
     "update:modelValue": (...args: any[]) => void;
-}, string, import("vue").PublicProps, Readonly<__VLS_Props> & Readonly<{
+}, string, import("vue").PublicProps, Readonly<TabsConfig> & Readonly<{
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }>, {
     id: string;

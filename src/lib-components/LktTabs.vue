@@ -2,27 +2,13 @@
 import LktTab from "../components/LktTab.vue";
 import {computed, getCurrentInstance, nextTick, ref, useSlots, watch} from 'vue';
 import {loadSelectedTabFromSession, setSelectedTabFromSession} from "../functions/functions";
-import {LktObject} from "lkt-vue-kernel";
+import {getDefaultValues, LktObject, Tabs, TabsConfig} from "lkt-vue-kernel";
 
 const {ctx: _this}: any = getCurrentInstance();
 
 const slots = useSlots();
 
-const props = withDefaults(defineProps<{
-    modelValue: string|number
-    id?: string
-    useSession?: boolean
-    cacheLifetime?: number
-    contentPad?: string
-    titles?: LktObject
-}>(), {
-    modelValue: '',
-    id: '',
-    useSession: false,
-    cacheLifetime: 5,
-    contentPad: '',
-    titles: () => ({}),
-});
+const props = withDefaults(defineProps<TabsConfig>(), getDefaultValues(Tabs));
 
 const emit = defineEmits([
     'update:modelValue'
