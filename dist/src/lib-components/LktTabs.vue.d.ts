@@ -11,13 +11,13 @@ declare const getTabHref: (key?: string | number) => string;
 declare const getTabTitle: (key?: string | number) => any;
 declare const refresh: () => void;
 declare const __VLS_ctx: InstanceType<__VLS_PickNotAny<typeof __VLS_self, new () => {}>>;
-declare var __VLS_2: string, __VLS_3: {}, __VLS_6: string, __VLS_7: {}, __VLS_16: string, __VLS_17: {};
+declare var __VLS_2: string, __VLS_3: {}, __VLS_6: string, __VLS_7: {}, __VLS_17: string, __VLS_18: {};
 type __VLS_Slots = __VLS_PrettifyGlobal<__VLS_OmitStringIndex<typeof __VLS_ctx.$slots> & {
     [K in NonNullable<typeof __VLS_2>]?: (props: typeof __VLS_3) => any;
 } & {
     [K in NonNullable<typeof __VLS_6>]?: (props: typeof __VLS_7) => any;
 } & {
-    [K in NonNullable<typeof __VLS_16>]?: (props: typeof __VLS_17) => any;
+    [K in NonNullable<typeof __VLS_17>]?: (props: typeof __VLS_18) => any;
 }>;
 declare const __VLS_self: import("vue").DefineComponent<TabsConfig, {
     LktTab: typeof LktTab;

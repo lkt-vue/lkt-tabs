@@ -1,36 +1,33 @@
 :root {
-    /** Font */
-    --lkt-tab-font-family: system-ui, Helvetica;
-    --lkt-tab-font-size: 16px;
-    --lkt-tab-font-weight: 300;
-    --lkt-tab-line-height: 1.425;
-    --lkt-tab-text-align: left;
+    --lkt-tab--display: inline-flex;
+    --lkt-tab--align-items: center;
+    --lkt-tab--justify-content: center;
+    --lkt-tab--font-family: system-ui, Helvetica;
+    --lkt-tab--font-size: 16px;
+    --lkt-tab--font-weight: 300;
+    --lkt-tab--line-height: 1.425;
+    --lkt-tab--text-align: left;
+    --lkt-tab--min-width: 100%;
+    --lkt-tab--min-height: 35px;
+    --lkt-tab--padding: 7px 15px;
+    --lkt-tab--gap: 15px;
+    --lkt-tab--border-radius: 5px;
+    --lkt-tab--border-width: 1px;
+    --lkt-tab--border-style: solid;
+    --lkt-tab--color: #444444;
+    --lkt-tab--background: #e1e1e1;
+    --lkt-tab--border-color: #ddd;
+    --lkt-tab--shadow: none;
+    --lkt-tab--transition: all linear 100ms;
 
-    /** Sizing */
-    --lkt-tab-min-width: 100%;
-    --lkt-tab-min-height: 35px;
-    --lkt-tab-padding: 7px 15px;
-    --lkt-tab-gap: 15px;
-
-    /** Border */
-    --lkt-tab-border-radius: 5px;
-    --lkt-tab-border-width: 1px;
-    --lkt-tab-border-style: solid;
-
-    /** Colors */
-    --lkt-tab-color: #444444;
-    --lkt-tab-bg: #e1e1e1;
-    --lkt-tab-border-color: #ddd;
-
-    /** Effects */
-    --lkt-tab-shadow: none;
-    --lkt-tab-transition: all linear 100ms;
+    /** Element: List */
+    --lkt-tab--list--display: flex;
 
     /** State: Active */
-    --lkt-tab-bg-active: #444444;
-    --lkt-tab-color-active: #e1e1e1;
+    --lkt-tab--active--background: #444444;
+    --lkt-tab--active--color: #e1e1e1;
 
     /** State: Hover */
-    --lkt-tab-bg-hover: #444444;
-    --lkt-tab-color-hover: #e1e1e1;
+    --lkt-tab--hover--background: #444444;
+    --lkt-tab--hover-color: #e1e1e1;
 }

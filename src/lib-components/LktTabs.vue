@@ -132,7 +132,7 @@ for (let k in tabsSlots.value) {
                 </template>
             </li>
             <li v-for="(_, key) in liSlots" data-lkt="tab">
-                <slot v-bind:name="'li-' + key"></slot>
+                <slot v-bind:name="'li-' + key"/>
             </li>
         </ul>
         <div class="lkt-tabs__content" v-bind:style="contentStyles">
